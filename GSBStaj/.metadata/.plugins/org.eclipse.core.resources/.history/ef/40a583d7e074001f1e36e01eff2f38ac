@@ -1,0 +1,11 @@
+package com.esra.oguz.BlogManagementSystem.dataAccess.abstracts;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.esra.oguz.BlogManagementSystem.entities.Comments;
+
+public interface CommentRepository extends JpaRepository<Comments, Integer> {
+	List<CommentProjection> findAllCommentsWithUserAndBlogPost();
+}

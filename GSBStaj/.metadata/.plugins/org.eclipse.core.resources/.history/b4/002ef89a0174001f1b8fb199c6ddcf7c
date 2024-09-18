@@ -1,0 +1,5 @@
+package com.esra.oguz.BlogManagementSystem.dataAccess.abstracts;
+
+public interface CommentRepository {
+
+}

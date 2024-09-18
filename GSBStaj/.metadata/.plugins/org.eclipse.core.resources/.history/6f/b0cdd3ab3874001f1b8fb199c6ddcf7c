@@ -1,0 +1,5 @@
+package com.esra.oguz.BlogManagementSystem.business.responses;
+
+public class BlogPostResponse {
+
+}

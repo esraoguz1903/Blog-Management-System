@@ -1,0 +1,56 @@
+package com.esra.oguz.BlogManagementSystem.business.concretes;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.esra.oguz.BlogManagementSystem.business.abstracts.CommentService;
+import com.esra.oguz.BlogManagementSystem.business.requests.CreateCommentRequests;
+import com.esra.oguz.BlogManagementSystem.business.responses.CommentResponse;
+import com.esra.oguz.BlogManagementSystem.business.responses.GetByIdCommentResponse;
+import com.esra.oguz.BlogManagementSystem.core.utilities.mappers.ModelMapperService;
+import com.esra.oguz.BlogManagementSystem.dataAccess.abstracts.BlogRepository;
+import com.esra.oguz.BlogManagementSystem.dataAccess.abstracts.CommentProjection;
+import com.esra.oguz.BlogManagementSystem.dataAccess.abstracts.CommentRepository;
+import com.esra.oguz.BlogManagementSystem.entities.Comments;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class CommentManager implements CommentService{
+	private ModelMapperService modelMapperService;
+	private CommentRepository commentRepository;
+	private BlogRepository blogRepository;
+	@Override
+	public void add(CreateCommentRequests createCommentRequests) {
+		Comments comments = this.modelMapperService.forRequest().map(createCommentRequests, Comments.class);
+		this.commentRepository.save(comments);
+	}
+	@Override
+	public List<CommentResponse> getAll() {
+		List<Comments> comments = this.commentRepository.findAll();
+		List<CommentResponse> commentResponses = comments.stream()
+				.map(comment -> this.modelMapperService.forResponse().map(comment, CommentResponse.class))
+				.collect(Collectors.toList());
+
+		return commentResponses;
+	}
+	@Override
+	public GetByIdCommentResponse getById(int id) {
+		Comments comments = this.commentRepository.findById(id).orElseThrow();
+		GetByIdCommentResponse getByIdCommentResponse = this.modelMapperService.forResponse().map(comments,
+				GetByIdCommentResponse.class);
+		return getByIdCommentResponse;
+	}
+	@Override
+	public void delete(int id) {
+		commentRepository.deleteById(id);
+		
+	}
+	@Override
+	public List<CommentProjection> getAllComments() {
+		return commentRepository.findAllCommentsWithUserAndBlogPost();
+	}
+}

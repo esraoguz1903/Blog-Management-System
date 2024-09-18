@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.esra.oguz.BlogManagementSystem.entities.BlogPosts"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.esra.oguz.BlogManagementSystem.core.utilities.mappers.ModelMapperService"/>
+    <fullyQualifiedTypeName name="com.esra.oguz.BlogManagementSystem.business.responses.BlogPostResponse"/>
+    <fullyQualifiedTypeName name="com.esra.oguz.BlogManagementSystem.business.abstracts.BlogService"/>
+    <fullyQualifiedTypeName name="com.esra.oguz.BlogManagementSystem.business.abstracts.CommentService"/>
+    <fullyQualifiedTypeName name="com.esra.oguz.BlogManagementSystem.business.abstracts.UsersService"/>
+</qualifiedTypeNameHistroy>

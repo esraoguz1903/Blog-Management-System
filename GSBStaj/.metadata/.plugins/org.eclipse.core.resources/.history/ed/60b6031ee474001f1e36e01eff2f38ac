@@ -1,0 +1,15 @@
+package com.esra.oguz.BlogManagementSystem.dataAccess.abstracts;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.esra.oguz.BlogManagementSystem.entities.Comments;
+
+public interface CommentRepository extends JpaRepository<Comments, Integer> {
+	@Query("SELECT c.id AS id, c.commentContent AS commentContent, u.id AS userId, b.id AS blogpostId " +
+		       "FROM Comments c JOIN c.user u JOIN c.blogPost b")
+	List<CommentProjection> findAllCommentsWithUserAndBlogPost();
+	
+}
